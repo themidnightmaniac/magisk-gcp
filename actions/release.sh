@@ -27,7 +27,7 @@ echo "$CHANGELOG" > CHANGELOG.MD
 
 # Zip the release
 printf "Creating zip file...\n"
-zip -r9 "$FILE" ./* -x "*.zip" -x "*.env" -x "actions/*" -x "*.MD" -x ".gitattributes" -x ".gitignore" -x ".git/*" -x "LICENSE" 1>/dev/null
+zip -r9 "$FILE" ./* -x "*.zip" -x "*.env" -x "actions/*" -x "*.MD" -x ".gitattributes" -x ".gitignore" -x ".git/*" -x "LICENSE" -x "temp" 1>/dev/null
 
 # Create the release and capture the response into a variable
 RESPONSE1="$(curl -L -s \
