@@ -1,0 +1,7 @@
+id=magisk-gcp
+name=Gps dot Conf Patcher
+version=v1.0.0
+versionCode=1
+author=themidnightmaniac
+description=A Magisk Module to Enhance gps.conf
+updateJson=https://raw.githubusercontent.com/themidnightmaniac/magisk-gcp/master/update.json
