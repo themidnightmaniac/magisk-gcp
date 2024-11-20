@@ -1,0 +1,45 @@
+name: Create Release on PR Merge
+
+on:
+  pull_request:
+    types:
+      - closed
+    branches:
+      - master
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Get version from version file
+      id: get_version
+      run: |
+        VERSION=$(cat version)
+        echo "VERSION=$VERSION" >> $GITHUB_ENV
+
+    - name: Create ZIP file
+      run: |
+        ZIP_FILE="magisk-gcp-${VERSION}.zip"
+        zip -r9 "$ZIP_FILE" META-INF module.prop post-fs-data.sh system update.json
+        echo "ZIP file created: $ZIP_FILE"
+      
+    - name: Create GitHub Release Tag
+      run: |
+        git tag $VERSION
+        git push origin $VERSION
+
+    - name: Upload ZIP to GitHub Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: magisk-gcp-${VERSION}.zip
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Delete ZIP file after upload
+      run: |
+        rm -f magisk-gcp-${VERSION}.zip  # Delete the ZIP file to ensure it won't be pushed in the next commit
+        echo "Deleted ZIP file: magisk-gcp-${VERSION}.zip"
