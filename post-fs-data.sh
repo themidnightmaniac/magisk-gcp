@@ -26,24 +26,24 @@ if [ -f "${CONF_FILE}" ]; then
 else exit 1; fi
 
 # Replace host
-if grep -q "^SUPL_HOST=.*" "${CONF_FILE}"; then
-  sed -i "s/^SUPL_HOST=.*/SUPL_HOST=${SUPL_HOST}/" "${NEW_CONF}";
+if grep -q "^SUPL_HOST.*=.*" "${CONF_FILE}"; then
+  sed -i "s/^SUPL_HOST.*=.*/SUPL_HOST = ${SUPL_HOST}/" "${NEW_CONF}";
 else # Append if not present
-  echo "SUPL_HOST=${SUPL_HOST}" >> "${NEW_CONF}";
+  echo "SUPL_HOST = ${SUPL_HOST}" >> "${NEW_CONF}";
 fi
 
 # Replace port
-if grep -q "^SUPL_PORT=.*" "${CONF_FILE}"; then
-  sed -i "s/^SUPL_PORT=.*/SUPL_PORT=${SUPL_PORT}/" "${NEW_CONF}";
+if grep -q "^SUPL_PORT.*=.*" "${CONF_FILE}"; then
+  sed -i "s/^SUPL_PORT.*=.*/SUPL_PORT = ${SUPL_PORT}/" "${NEW_CONF}";
 else # Append if not present
-  echo "SUPL_PORT=${SUPL_PORT}" >> "${NEW_CONF}";
+  echo "SUPL_PORT = ${SUPL_PORT}" >> "${NEW_CONF}";
 fi
 
 # Replace NTP pool
-if grep -q "^NTP_SERVER=.*" "${CONF_FILE}"; then
-	sed -i "s/^NTP_SERVER=.*/NTP_SERVER=${NTP_SERVER}/" "${NEW_CONF}";
+if grep -q "^NTP_SERVER.*=.*" "${CONF_FILE}"; then
+	sed -i "s/^NTP_SERVER.*=.*/NTP_SERVER = ${NTP_SERVER}/" "${NEW_CONF}";
 else # Append if not present
-	echo "NTP_SERVER=${NTP_SERVER}" >> "${NEW_CONF}"
+	echo "NTP_SERVER = ${NTP_SERVER}" >> "${NEW_CONF}"
 fi
 
 # Cleanup
