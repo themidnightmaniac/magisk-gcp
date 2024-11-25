@@ -6,6 +6,7 @@ This magisk module enhances the default gps.conf. ATM it changes the following o
 
 - NTP_SERVER = pool.ntp.org
 - SUPL_SERVER = supl.grapheneos.org
+- SUPL_PORT = 7275
 - AGPS_CONFIG_INJECT = 1
 - SUPL_ES=1
 - USE_EMERGENCY_PDN_FOR_EMERGENCY_SUPL=0
