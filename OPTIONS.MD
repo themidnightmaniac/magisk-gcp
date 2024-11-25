@@ -4,7 +4,7 @@
 
 - **NTP_SERVER = pool.ntp.org**
 
-This will address will resolve to the ip of the closest ntp server. NTP is used to ensure that the time reported by the GPS satellites is acuratelly synchronized. 
+This will address will resolve to the ip of the closest ntp server. NTP is used to ensure that the time reported by the GPS satellites is acuratelly synchronized. Read [here](https://www.ntppool.org/zone/@) for more info.
 
 - **SUPL_SERVER = supl.grapheneos.org**
 
