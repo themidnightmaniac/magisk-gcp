@@ -46,6 +46,27 @@ else # Append if not present
 	echo "NTP_SERVER = ${NTP_SERVER}" >> "${NEW_CONF}"
 fi
 
+# Replace to inject the above config
+if grep -q "^AGPS_CONFIG_INJECT.*=.*" "${CONF_FILE}"; then
+	sed -i "s/^AGPS_CONFIG_INJECT.*=.*/AGPS_CONFIG_INJECT = 1/" "${NEW_CONF}";
+else # Append if not present
+	echo "AGPS_CONFIG_INJECT = 1" >> "${NEW_CONF}"
+fi
+
+# Uncomment or enable emergency supl
+if grep -q "^.*SUPL_ES.*=.*" "${CONF_FILE}"; then
+	sed -i "s/^.*SUPL_ES.*=.*/SUPL_ES = 1/" "${NEW_CONF}";
+else # Append if not present
+	echo "SUPL_ES = 1" >> "${NEW_CONF}"
+fi
+
+# Uncomment or enable emergency supl provider as the default provider
+if grep -q "^.*USE_EMERGENCY_PDN_FOR_EMERGENCY_SUPL.*=.*" "${CONF_FILE}"; then
+	sed -i "s/^.*USE_EMERGENCY_PDN_FOR_EMERGENCY_SUPL.*=.*/USE_EMERGENCY_PDN_FOR_EMERGENCY_SUPL = 0/" "${NEW_CONF}";
+else # Append if not present
+	echo "USE_EMERGENCY_PDN_FOR_EMERGENCY_SUPL = 0" >> "${NEW_CONF}"
+fi
+
 # Cleanup
 if [ -z "$(ls -A "${MODDIR}/system/etc")" ]; then rmdir "${MODDIR}/system/etc"; fi
 if [ -z "$(ls -A "${MODDIR}/system/vendor/etc")" ]; then rmdir "${MODDIR}/system/vendor/etc"; fi
