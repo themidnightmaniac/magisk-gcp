@@ -18,7 +18,7 @@ elif [ -f /system/etc/gps_debug.conf ]; then
   CONF_FILE="/system/etc/gps_debug.conf";
 else exit 1; fi
 
-mkdir -p "${MODDIR}/$(dirname "${CONF_FILE}")" && touch "${CONF_FILE}";
+mkdir -p "${MODDIR}/$(dirname "${CONF_FILE}")" && touch "${MODDIR}/${CONF_FILE}";
 
 if [ -f "${CONF_FILE}" ]; then
   NEW_CONF="${MODDIR}/${CONF_FILE}";
