@@ -17,3 +17,7 @@ _Updated with more options, see [OPTIONS.MD](https://github.com/themidnightmania
 ### Removed 
 
 - Remove hardcoded gps.conf path in post-fs-data.sh
+
+### Fixed
+
+- Fix touch statement possibly overwriting system files making the module patch the wrong file
