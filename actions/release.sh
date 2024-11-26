@@ -18,7 +18,7 @@ source ./actions/functions.sh
 VERSION="$(cat version)"
 FILE="magisk-gcp-${VERSION}.zip"
 RELEASE="$(cat RELEASE.MD)"
-REPO="themidnightmaniac/test"
+REPO="themidnightmaniac/magisk-gcp"
 
 trap "cleanup "$FILE"" SIGINT SIGTERM EXIT
 
